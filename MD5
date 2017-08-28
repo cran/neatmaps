@@ -1,4 +1,4 @@
-ef2cbfe77b2b993bc5652efd3b53c4a5 *DESCRIPTION
+7a9e55ca05b0be5359c8423b3157d813 *DESCRIPTION
 625f90eb58c284fcd16f7462578d2cf2 *LICENSE
 df189eccc8531405deceb90aef1d02dc *NAMESPACE
 f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
@@ -7,7 +7,7 @@ f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
 8e79d9ae9c78c27fd1c6677e6f58f4a9 *R/formatClusters.R
 6ce996f2593edea1574277799924332c *R/getStructuralAttr.R
 6d34f46a32f3c6895ddc4bb8aeb902e5 *R/hierarchy.R
-43d29040f81f80853b6dbb33a3747b7a *R/neatmap.R
+5838d1c93d6725c874c64721c49b54c5 *R/neatmap.R
 06487763379235e66c2dc934f4752945 *R/netDataFrame.R
 d9fdcc0f15515daae3411de86b9e1966 *R/networkAttr.R
 e4772d339273930d9e434e44701c3bb9 *R/nodeAttr.R
@@ -24,7 +24,7 @@ b898a0e01ba4acbf4401a64e5fddbca0 *man/edgeDF.Rd
 3c0d6264bc3cd1d351442526f8eccc11 *man/formatCluster.Rd
 782369e7a643767915eab753573668b7 *man/getStructureAttr.Rd
 4b6d243bd797287c6e228d96b74311af *man/hierarchy.Rd
-cce97ab5cabde7dc35eb62ee8fc95ed7 *man/neatmap.Rd
+400a5852469478fe6df31a4f744d49d0 *man/neatmap.Rd
 8f281d452fa40f51974d14102dbbfcfc *man/netsDataFrame.Rd
 ca0f9ea1326f640fe519e5bce59c9ec6 *man/networkAttrDF.Rd
 b888fa751cc1b618194a6ac5cf4fc3da *man/nodeAttrDF.Rd

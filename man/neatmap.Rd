@@ -62,7 +62,7 @@ df <- netsDataFrame(net.attr.df = networkAttrDF,
 heatmap <- neatmap(df, scale.df = "basic", mainTitle = "Heatmap", 
                    xlabel = "Chararacteritics", ylabel = "Networks",
                    link.method = "single", dist.method = "euclidean",
-                   nBootRep = 100)
+                   nBootRep = 10)
 
 }
 \author{
