@@ -1,5 +1,5 @@
 ---
-title: "Template"
+title: "neatmaps"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -15,11 +15,10 @@ library(plotly)
 library(neatmaps)
 
 # Insert the name of the R file that you contains your network dataframe here.
-# Make sure the name of the data frame is 'df' if you want this file to work,
-# and add '## @knitr prepareData' to the top of the file.
-# Make changes to this Rmd file as needed.
-read_chunk("C:\\Users\\Phil\\Documents\\concordia\\summer2017\\researchISM\\code\\hegomapsTests\\test2.R")
-
+# To create such a dataframe, follow the example in the README file.
+# Make sure the name of the data frame is 'df'and add '## @knitr prepareData' 
+# to the top of the file.
+read_chunk("")
 ```
 ```{r prepareData}
 ```
@@ -65,7 +64,7 @@ Column {.tabset}
 set.seed(96)
 results <- neatmap(df, scale.df = "basic", mainTitle = "",
                    xlabel = "Chararacteritics", ylabel = "Networks",
-                   link.method = "single", xlabCex = 4)
+                   link.method = "single", xlabCex = 4, nBootRep = 1000)
 ```
 <div align="center">
 ```{r echo=FALSE}
@@ -102,7 +101,7 @@ Column {.tabset}
 set.seed(96)
 results <- neatmap(df, scale.df = "basic", mainTitle = "",
                    xlabel = "Chararacteritics", ylabel = "Networks",
-                   link.method = "average", xlabCex = 4)
+                   link.method = "average", xlabCex = 4, nBootRep = 1000)
 ```
 <div align="center">
 ```{r echo=FALSE}
@@ -138,7 +137,7 @@ Column {.tabset}
 set.seed(96)
 results <- neatmap(df, scale.df = "basic", mainTitle = "",
                    xlabel = "Chararacteritics", ylabel = "Networks",
-                   link.method = "complete", xlabCex = 4)
+                   link.method = "complete", xlabCex = 4, nBootRep = 1000)
 ```
 <div align="center">
 ```{r echo=FALSE}

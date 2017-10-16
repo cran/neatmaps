@@ -1,4 +1,4 @@
-7a9e55ca05b0be5359c8423b3157d813 *DESCRIPTION
+382e62c4d00339f23f2d3c7015fea59d *DESCRIPTION
 625f90eb58c284fcd16f7462578d2cf2 *LICENSE
 df189eccc8531405deceb90aef1d02dc *NAMESPACE
 f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
@@ -13,11 +13,11 @@ d9fdcc0f15515daae3411de86b9e1966 *R/networkAttr.R
 e4772d339273930d9e434e44701c3bb9 *R/nodeAttr.R
 729e1d22763eb796d9847845975622f3 *R/plotDendrogram.R
 0072c6af37c54099f67754d4b9744c31 *R/scaledColumns.R
-6dfed985c26fe12cbccaa59a9a338156 *README.md
+0270068659011020df72a6f62e0a52a2 *README.md
 66bbef32f19e114e4713f84cb8186daf *data/edgeTable.rda
 c97df5871f40a7d8e328b3ecbf89cf1a *data/networkAttr.rda
 299a971eccb95b31b60c5ecba755af4a *data/nodeAttr.rda
-a5b66071c5ac925d2decf87947a2f7ad *inst/rmd/template.Rmd
+b1c6949302380a6c0b60eb5101754c4f *inst/rmd/template.Rmd
 a7145f92a74782992d4bd5fe72b79a82 *man/compactNodeAttr.Rd
 46754fc7d22335fb85b5e534c7525441 *man/createNetworks.Rd
 b898a0e01ba4acbf4401a64e5fddbca0 *man/edgeDF.Rd
