@@ -1,4 +1,4 @@
-382e62c4d00339f23f2d3c7015fea59d *DESCRIPTION
+fc7697a63fb3da3afd373847b4d161d6 *DESCRIPTION
 625f90eb58c284fcd16f7462578d2cf2 *LICENSE
 df189eccc8531405deceb90aef1d02dc *NAMESPACE
 f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
@@ -11,9 +11,9 @@ f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
 06487763379235e66c2dc934f4752945 *R/netDataFrame.R
 d9fdcc0f15515daae3411de86b9e1966 *R/networkAttr.R
 e4772d339273930d9e434e44701c3bb9 *R/nodeAttr.R
-729e1d22763eb796d9847845975622f3 *R/plotDendrogram.R
+a667b6816de3f5ea0e2f42445f4070e8 *R/plotDendrogram.R
 0072c6af37c54099f67754d4b9744c31 *R/scaledColumns.R
-0270068659011020df72a6f62e0a52a2 *README.md
+24edc24d797a9fbb55a5ffedc540c850 *README.md
 66bbef32f19e114e4713f84cb8186daf *data/edgeTable.rda
 c97df5871f40a7d8e328b3ecbf89cf1a *data/networkAttr.rda
 299a971eccb95b31b60c5ecba755af4a *data/nodeAttr.rda

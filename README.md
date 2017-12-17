@@ -31,30 +31,16 @@ df <- netsDataFrame(net.attr.df = networkAttrDF,
 # clusters of the bootstrap analysis, the results of the statistical analysis
 # and the heatmap.
 resultsList <- neatmap(df, scale.df = "basic", mainTitle = "Heatmap", 
-                   xlabel = "Chararacteritics", ylabel = "Networks",
+                   xlabel = "", ylabel = "Networks",
                    link.method = "single", dist.method = "euclidean",
-                   nBootRep = 100)
+                   nBootRep = 100, xlabCex = 1, ylabCex = 1,
+                   heatmapMargins = c(100, 50, 50, 100))
 ```
 
 To display the heatmap:
 
 ``` r
 resultsList[[4]]
-```
-
-To display the dendrogram:
-
-``` r
-plotDendrogram(dend = resultsList[[1]],
-               results = resultsList[[3]],
-               labelsCex = 1,
-               pCex = 1)
-```
-
-To list the significant clusters:
-
-``` r
-formatCluster(resultsList[[2]])
 ```
 
 ### Dynamic Report
