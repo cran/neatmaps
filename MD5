@@ -1,4 +1,4 @@
-fc7697a63fb3da3afd373847b4d161d6 *DESCRIPTION
+d26e2a88b65a2a5f8bf79a8b1725832d *DESCRIPTION
 625f90eb58c284fcd16f7462578d2cf2 *LICENSE
 df189eccc8531405deceb90aef1d02dc *NAMESPACE
 f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
@@ -7,7 +7,7 @@ f6a304966eb1490d0e7956fb599e8ba3 *R/compactNodeAttr.R
 8e79d9ae9c78c27fd1c6677e6f58f4a9 *R/formatClusters.R
 6ce996f2593edea1574277799924332c *R/getStructuralAttr.R
 6d34f46a32f3c6895ddc4bb8aeb902e5 *R/hierarchy.R
-5838d1c93d6725c874c64721c49b54c5 *R/neatmap.R
+564ad6a94b3ab86c8676effe2ed3b2be *R/neatmap.R
 06487763379235e66c2dc934f4752945 *R/netDataFrame.R
 d9fdcc0f15515daae3411de86b9e1966 *R/networkAttr.R
 e4772d339273930d9e434e44701c3bb9 *R/nodeAttr.R

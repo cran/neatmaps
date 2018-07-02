@@ -78,7 +78,7 @@ neatmap <- function(df, scale.df, link.method = "average", dist.method = "euclid
   dendClusters <- pvclust::pvpick(results)$clusters
   
   # create the heatmap
-  hm <- heatmaply::heatmaply(df, Colv = dend, main = mainTitle,
+  hm <- heatmaply::heatmaply(df, Colv = rev(dend), main = mainTitle,
                    seriate = "OLO",
                    xlab = xlabel,
                    ylab = ylabel,
