@@ -13,5 +13,5 @@ hierarchy(net)
 \code{hierarchy} calculates the hierarchy of a network
 }
 \author{
-Phil Boileau , \email{philippe.boileau@mail.concordia.ca}
+Philippe Boileau, \email{philippe_boileau@berkeley.edu}
 }

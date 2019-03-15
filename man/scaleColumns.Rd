@@ -10,10 +10,10 @@ scaleColumns(df)
 \item{df}{The data frame of numerical values to be scaled.}
 }
 \description{
-\code{scaleColumns} scales the columns of a data frame object
-  between the values of 0 and 1 without changing the underlying
-  distribution of the columns.
+\code{scaleColumns} scales the columns of a data frame object between the
+values of 0 and 1 without changing the underlying distribution of the
+columns.
 }
 \author{
-Phil Boileau , \email{philippe.boileau@mail.concordia.ca}
+Philippe Boileau, \email{philippe_boileau@berkeley.edu}
 }

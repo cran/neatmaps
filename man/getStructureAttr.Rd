@@ -4,10 +4,10 @@
 \alias{getStructureAttr}
 \title{Structural Attributes of Networks Data Frame}
 \usage{
-getStructureAttr(netList)
+getStructureAttr(net_list)
 }
 \arguments{
-\item{netList}{A list of Igraph network objects that represent the collection
+\item{net_list}{A list of Igraph network objects that represent the collection
 of networks.}
 }
 \description{
@@ -15,5 +15,5 @@ of networks.}
   of a list of networks.
 }
 \author{
-Phil Boileau , \email{philippe.boileau@mail.concordia.ca}
+Philippe Boileau, \email{philippe_boileau@berkeley.edu}
 }

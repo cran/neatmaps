@@ -1,94 +1,132 @@
-#' @title Heatmap of Networks
+#' @title Explore Multi-Network Data
 #'
 #' @description
-#' \code{neatmap} produces a heatmap of networks and their characteristics
+#' \code{neatmap} produces a heatmap of multi-network data and identifies stable
+#' clusters in its variables.
 #'
 #' @details
-#' This function generates a heatmap of networks and their various
-#' characteristics from a data frame containing only numeric variables. These
-#' numeric values are then scaled using a chosen method. The hierarchical
-#' cluster analysis results used in the heatmap are also output. The 
-#' heatmap is produced using the \link{heatmaply} package.
+#' This function allows users to efficiently explore their multi-network data
+#' by visualizing their data with a heatmap and assessing the stability of the
+#' associations presented within it. \code{neatmap} requires that the data 
+#' frame be processed into an appropriate format prior to use. Data is then 
+#' scaled (if necessary) using of the built in methods. See (list functions) for
+#' further details on how to prepare multi-network data for use with 
+#' \code{neatmap}. The heatmap is created using
+#' \code{\link[heatmaply]{heatmaply}} and the consensus clustering is performed
+#' using \code{\link[ConsensusClusterPlus]{ConsensusClusterPlus}}
 #' 
-#' @param df a dataframe of network attributes containing only
-#'   numeric values
-#' @param scale.df A string indicating whether the data frame should be scaled, and if so,
-#'   which method should be used. The options are "none", "basic", "normalize" and "percentize".
-#'   If "none" is selected, then no scaling takes place.  If "basic" is selected, each
-#'   column is reduced to the 0-1 interval, whithout changing the underlying distribution. 
-#'   If "normalize" is selected, each column is normalized to have a mean of 0 and 
-#'   standard deviation of 1. If "percentize" is selected, column values are transformed 
-#'   into percentiles. This conserves the underlying distribution of the data if the data
-#'   is not expected to be normally distributed.
-#' @param link.method The agglomeration method to be used. See method in \link{hclust}.
-#' @param dist.method The distance measure to be used. See method in \link{dist}.
-#' @param nBootRep The number of bootstrap replications for the statistical analysis of 
-#'   the hierarchical clustering. See \link{pvclust}.
-#' @param mainTitle The title of the heatmap.
-#' @param xlabel The x axis label of the heatmap.
-#' @param ylabel The y axis label of the heatmap.
-#' @param xlabCex The font size of the elements on the x axis.
-#' @param ylabCex The font size of the elements on the y axis.
-#' @param heatmapMargins The size of the margins for the heatmap. See \link{heatmaply}.
+#' @references For more information on the consensus clustering, see
+#' \href{https://link.springer.com/article/10.1023\%2FA\%3A1023949509487}{Monti et al.}. 
 #' 
-#' @author Phil Boileau , \email{philippe.boileau@mail.concordia.ca}
+#' @param df a dataframe of network attributes containing only numeric values.
+#' @param scale_df A string indicating whether the columns of the data frame
+#'   should be scaled, and, if so, which method should be used. The options are
+#'   "none", "ecdf", "normalize" and "percentize". If "none" is selected, then
+#'   the columns are not scaled.  If "ecdf" is selected, then the columns are
+#'   transformed into their empirical cumulative distribution. If "normalize" is
+#'   selected, each column is centered to have a mean of 0 and scaled to have a
+#'   standard deviation of 1. If "percentize" is selected, column values are 
+#'   transformed into percentiles.
+#' @param link_method The agglomeration method to be used for hierarchical 
+#'   clustering. Defaults to the average linkage method. See other methods in
+#'   \code{\link[stats]{hclust}}.
+#' @param dist_method The distance measure to be used between columns and 
+#'   between rows of the dataframe. Distance is used as a measure of similarity.
+#'   Defaults to euclidean distance. See other options in 
+#'   \code{\link[stats]{dist}}.
+#' @param max_k The maximum number of clusters to consider in the consensus
+#'   clustering step. Consensus clustering will be performed for max_k-1 
+#'   iterations, i.e. for 2, 3, ..., max_k clusters. Defaults to 10.
+#' @param reps The number of subsamples taken at each iteration of the consensus
+#'   cluster algorithm. Defaults to 1000.
+#' @param p_var The proportion of network variables to be subsampled during 
+#'   consensus clustering. Defaults to 1. 
+#' @param p_net The proportion of networks to be subsampled during consensus
+#'   clustering. Defaults to 0.8.
+#' @param cc_seed The seed used to ensure the reproducibility of the consensus 
+#'   clustering. Defaults to 1. 
+#' @param main_title The title of the heatmap.
+#' @param xlab The x axis label of the heatmap.
+#' @param ylab The y axis label of the heatmap.
+#' @param xlab_cex The font size of the elements on the x axis.
+#' @param ylab_cex The font size of the elements on the y axis.
+#' @param heatmap_margins The size of the margins for the heatmap. 
+#'   See \code{\link[heatmaply]{heatmaply}}.
+#' 
+#' @author Philippe Boileau, \email{philippe_boileau@@berkeley.edu}
 #'
 #' @export
-#' @importFrom stats as.dendrogram
 #' @importFrom heatmaply percentize heatmaply
-#' @importFrom pvclust pvclust pvpick
 #' @importFrom ggplot2 scale_fill_gradient2
+#' @importFrom ConsensusClusterPlus ConsensusClusterPlus
 #' 
-#' @return A list containing the dendrogram of the hierarchical clustering,
-#'   the significant clusters of the statistical analysis, the results of
-#'   the statistical analysis and the heatmap.
+#' @return A list containing the heatmap of the multi-network data and a list of
+#'   length max_k-1 where each element is a list containing the consensus 
+#'   matrix, the consensus hierarchical clustering results and the consensus
+#'   class assignments. The list of results produced by the consensus clustering
+#'   can be parsed using following functions in the \code{\link{neatmaps}}
+#'   package: \code{\link{consClustResTable}}, \code{\link{consensusECDF}} and
+#'   \code{\link{consensusChangeECDF}}.
+#'   
 #' @examples
-#' df <- netsDataFrame(net.attr.df = networkAttrDF,
-#'                     node.attr.df = nodeAttrDF,
-#'                     edge.df = edgeDF)
-#' heatmap <- neatmap(df, scale.df = "basic", mainTitle = "Heatmap", 
-#'                    xlabel = "Chararacteritics", ylabel = "Networks",
-#'                    link.method = "single", dist.method = "euclidean",
-#'                    nBootRep = 10)
+#' # create the data frame using the network, node and edge attributes
+#' df <- netsDataFrame(network_attr_df,
+#'                     node_attr_df,
+#'                     edge_df)
 #' 
-neatmap <- function(df, scale.df, link.method = "average", dist.method = "euclidean",
-                     nBootRep = 1000, mainTitle  = "", xlabel, ylabel, xlabCex = 5,
-                     ylabCex = 5, heatmapMargins = c(50, 50, 50, 100)){
+#' # run the neatmap code on df
+#' neat_res <- neatmap(df, scale_df = "ecdf", max_k = 3, reps = 100, 
+#'                     xlab = "vars", ylab = "nets", xlab_cex = 1, ylab_cex = 1)
+#' 
+#' # extract the heatmap
+#' heatmap <- neat_res[[1]]
+#' 
+#' # extract the consensus clustering results
+#' consensus_res <- neat_res[[2]]
+#' 
+neatmap <- function(df, scale_df, link_method = "average", 
+                    dist_method = "euclidean", max_k = 10,
+                    reps = 1000, p_var = 1, p_net = 0.8, cc_seed = 100,
+                    main_title  = "", xlab, ylab, xlab_cex = 1, ylab_cex = 1,
+                    heatmap_margins = c(50, 50, 50, 100)){
   
   # check dataframe to make sure that it only contains numeric values
   if(FALSE %in% sapply(df, is.numeric))
-    stop("Please only input dataframes that contain numeric values")
+    stop("Please input a dataframe that contains exclusively numeric values")
   
   # scale the data based on user selection
-  if(scale.df == "basic")
+  if(scale_df == "ecdf")
     df <- scaleColumns(df)
-  else if(scale.df == "normalize")
+  else if(scale_df == "normalize")
     df <- scale(df)
-  else if(scale.df == "percentize")
+  else if(scale_df == "percentize")
     df <- heatmaply::percentize(df)
   
-  # perform the cluster analysis on the variables of the networks
-  results <- pvclust::pvclust(df, method.hclust = link.method, method.dist = dist.method,
-                     nboot = nBootRep)
-  
-  # create the dendrogram
-  dend <- stats::as.dendrogram(results)
-  
-  # get the significant clusters
-  dendClusters <- pvclust::pvpick(results)$clusters
+  # perform the consensus clustering on the scaled data frame
+  results <- consensusClusterNoPlots(df,
+                                     max_k = max_k,
+                                     link_method = link_method,
+                                     reps = reps,
+                                     p_var = p_var,
+                                     p_net = p_net,
+                                     dist_method = dist_method,
+                                     cc_seed = cc_seed)
   
   # create the heatmap
-  hm <- heatmaply::heatmaply(df, Colv = rev(dend), main = mainTitle,
-                   seriate = "OLO",
-                   xlab = xlabel,
-                   ylab = ylabel,
-                   margins = heatmapMargins,
-                   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(low = "blue",
-                                                                           high = "red",
-                                                                           midpoint = 0.5),
-                  cexRow = ylabCex,
-                  cexCol = xlabCex)
+  hm <- heatmaply::heatmaply(df,
+                             dist_method = dist_method,
+                             hclust_method = link_method,
+                             main = main_title,
+                             seriate = "OLO",
+                             xlab = xlab,
+                             ylab = ylab,
+                             margins = heatmap_margins,
+                             scale_fill_gradient_fun = 
+                               ggplot2::scale_fill_gradient2(low = "blue",
+                                                             high = "red",
+                                                             midpoint = 0.5),
+                             cexRow = ylab_cex,
+                             cexCol = xlab_cex)
   
-  
-  return(list(dend, dendClusters, results, hm))
+  return(list(hm, results))
 }
