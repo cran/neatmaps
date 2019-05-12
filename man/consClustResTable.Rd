@@ -9,9 +9,12 @@ consClustResTable(neatmap_res)
 \arguments{
 \item{neatmap_res}{Output from the \code{\link{neatmap}} function.}
 }
+\value{
+A dataframe of the results of the consensus clustering.
+}
 \description{
-\code{consClustResTable} presents a table of the consensus cluster results.
-The table presents the results of each iteration of the 
+\code{consClustResTable} create a dataframe of the consensus cluster results.
+The dataframe presents the results of each iteration of the 
 \code{\link[ConsensusClusterPlus]{ConsensusClusterPlus}} algorithm, the
 cluster consensus of each cluster and the list of the cluster elements with
 their corresponding item consensus. The item consensus is taken with respect

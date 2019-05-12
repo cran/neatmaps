@@ -60,13 +60,13 @@
 #' @importFrom ggplot2 scale_fill_gradient2
 #' @importFrom ConsensusClusterPlus ConsensusClusterPlus
 #' 
-#' @return A list containing the heatmap of the multi-network data and a list of
-#'   length max_k-1 where each element is a list containing the consensus 
-#'   matrix, the consensus hierarchical clustering results and the consensus
-#'   class assignments. The list of results produced by the consensus clustering
-#'   can be parsed using following functions in the \code{\link{neatmaps}}
-#'   package: \code{\link{consClustResTable}}, \code{\link{consensusECDF}} and
-#'   \code{\link{consensusChangeECDF}}.
+#' @return A named list containing the heatmap of the multi-network data and a
+#'   list of length max_k-1 where each element is a list containing the
+#'   consensus matrix, the consensus hierarchical clustering results and the
+#'   consensus class assignments. The list of results produced by the consensus
+#'   clustering can be parsed using following functions in the
+#'   \code{\link{neatmaps}} package: \code{\link{consClustResTable}},
+#'   \code{\link{consensusECDF}} and \code{\link{consensusChangeECDF}}.
 #'   
 #' @examples
 #' # create the data frame using the network, node and edge attributes
@@ -79,10 +79,10 @@
 #'                     xlab = "vars", ylab = "nets", xlab_cex = 1, ylab_cex = 1)
 #' 
 #' # extract the heatmap
-#' heatmap <- neat_res[[1]]
+#' heatmap <- neat_res$heatmap
 #' 
 #' # extract the consensus clustering results
-#' consensus_res <- neat_res[[2]]
+#' consensus_res <- neat_res$consensus_clust
 #' 
 neatmap <- function(df, scale_df, link_method = "average", 
                     dist_method = "euclidean", max_k = 10,
@@ -128,5 +128,6 @@ neatmap <- function(df, scale_df, link_method = "average",
                              cexRow = ylab_cex,
                              cexCol = xlab_cex)
   
-  return(list(hm, results))
+  return(list(heatmap = hm,
+              consensus_clust = results))
 }

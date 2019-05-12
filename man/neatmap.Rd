@@ -60,13 +60,13 @@ clustering. Defaults to 1.}
 See \code{\link[heatmaply]{heatmaply}}.}
 }
 \value{
-A list containing the heatmap of the multi-network data and a list of
-  length max_k-1 where each element is a list containing the consensus 
-  matrix, the consensus hierarchical clustering results and the consensus
-  class assignments. The list of results produced by the consensus clustering
-  can be parsed using following functions in the \code{\link{neatmaps}}
-  package: \code{\link{consClustResTable}}, \code{\link{consensusECDF}} and
-  \code{\link{consensusChangeECDF}}.
+A named list containing the heatmap of the multi-network data and a
+  list of length max_k-1 where each element is a list containing the
+  consensus matrix, the consensus hierarchical clustering results and the
+  consensus class assignments. The list of results produced by the consensus
+  clustering can be parsed using following functions in the
+  \code{\link{neatmaps}} package: \code{\link{consClustResTable}},
+  \code{\link{consensusECDF}} and \code{\link{consensusChangeECDF}}.
 }
 \description{
 \code{neatmap} produces a heatmap of multi-network data and identifies stable
@@ -94,10 +94,10 @@ neat_res <- neatmap(df, scale_df = "ecdf", max_k = 3, reps = 100,
                     xlab = "vars", ylab = "nets", xlab_cex = 1, ylab_cex = 1)
 
 # extract the heatmap
-heatmap <- neat_res[[1]]
+heatmap <- neat_res$heatmap
 
 # extract the consensus clustering results
-consensus_res <- neat_res[[2]]
+consensus_res <- neat_res$consensus_clust
 
 }
 \references{

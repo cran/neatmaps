@@ -67,7 +67,9 @@ consensusMap <- function(neatmap_res, link_method = "average"){
       scale_fill_gradient_fun = 
         ggplot2::scale_fill_gradient2(low = "white", 
                                       high = "blue", 
-                                      limits = c(0, 1))
+                                      limits = c(0, 1)),
+      main = paste("Consensus Map,", i, "Clusters"),
+      xlab("Network Variables")
       )
   }
   

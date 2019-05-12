@@ -3,6 +3,8 @@
 neatmaps
 ========
 
+[![](http://cranlogs.r-pkg.org/badges/grand-total/neatmaps)](https://CRAN.R-project.org/package=neatmaps) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/neatmaps)](https://CRAN.R-project.org/package=neatmaps)
+
 ### Overview
 
 The goal of the neatmaps package is to simplify the exploratory data analysis process for multiple network data sets with the help of heatmaps and consensus clustering. Multiple network data consists of multiple disjoint networks that share common variables. Ego network data sets are an example of such data sets. This package contains the necessary tools to prepare raw multiple network data for analysis, create a heatmap of the data, perform consensus clustering on the networks' variables and assess the stability of the variable clusters depicted in the heatmap.
@@ -34,8 +36,10 @@ neat_res <- neatmap(df, scale_df = "ecdf", max_k = 3, reps = 100,
 Next, plot the heatmap stored in `neat_res`.
 
 ``` r
-neat_res[[1]]
+neat_res$heatmap
 ```
+
+![](inst/toy_hm.png)
 
 Finally, the results of the consensus clustering are visualized to identify the stable clusters of variables in the heatmap. The consensus matrices are presented first, followed by the ECDFs of the consensus matrices and finally the relative change in ECDF of consecutive iterations of the consensus clustering algorithm.
 
@@ -43,13 +47,21 @@ Finally, the results of the consensus clustering are visualized to identify the 
 consensusMap(neat_res)
 ```
 
+![](inst/cons_hm_2.png)
+
+![](inst/cons_hm_3.png)
+
 ``` r
 consensusECDF(neat_res)
 ```
 
+![](inst/ecdf.png)
+
 ``` r
 consensusChangeECDF(neat_res)
 ```
+
+![](inst/rel_ecdf.png)
 
 ### Documentation
 
